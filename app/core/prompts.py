@@ -27,8 +27,13 @@ rag_query_prompt = ChatPromptTemplate.from_template(
     """
 You are a helpful research assistant.
 
-Answer the user's question clearly and simply.
+Use ONLY the context below to answer the question.
+If the answer is not in the context, say "I don't know".
 
-Question: {question}
+Context:
+{context}
+
+Question:
+{question}
 """
 )

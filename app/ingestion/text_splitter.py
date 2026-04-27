@@ -5,7 +5,7 @@ from langchain_core.documents import Document
 
 def split_documents(documents: list[Document]) -> list[Document]:
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
+        chunk_size=300,
         chunk_overlap=100
     )
 

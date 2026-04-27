@@ -1,12 +1,13 @@
 
 
 from langchain_community.vectorstores import FAISS
-from app.core.embeddings import get_embedding_model
+from app.ingestion.embeddings import get_embedding_model
 from app.ingestion import vector_store
+from app.config import settings
 
 
 def create_in_memory_vector_store(documents):
-    embedding_model = get_embedding_model(provider="ollama")
+    embedding_model = get_embedding_model(provider=settings.provider)
 
     vector_store = FAISS.from_documents(
         documents=documents,
