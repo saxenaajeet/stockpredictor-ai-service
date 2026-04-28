@@ -6,7 +6,7 @@ def get_embedding_model(provider="ollama"):
 
     if provider == "ollama":
         return OllamaEmbeddings(
-            model="nomic-embed-text"
+            model=settings.embedding_model
         )
 
     elif provider == "openai":

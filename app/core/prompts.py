@@ -37,3 +37,22 @@ Question:
 {question}
 """
 )
+
+agent_prompt = ChatPromptTemplate.from_template(
+"""
+You are a stock analyst.
+
+Use the following data:
+
+RAG Knowledge:
+{rag_data}
+
+Latest Market Data:
+{yahoo_data}
+
+Question:
+{question}
+
+Answer clearly with risks and insights.
+"""
+)

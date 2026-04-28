@@ -9,15 +9,18 @@ def store_documents(documents, ticker: str):
     conn = get_connection()
     cur = conn.cursor()
 
-    embedding_model = get_embedding_model(provider=settings.embedding_provider)
+    # 🔥 STEP 1 — delete existing data for ticker
+    cur.execute(
+        "DELETE FROM stock_embeddings WHERE ticker = %s",
+        (ticker,)
+    )
 
+    embedding_model = get_embedding_model(settings.embedding_provider)
+
+    # 🔹 STEP 2 — insert fresh data
     for doc in documents:
-        text = doc.page_content
+        embedding = embedding_model.embed_query(doc.page_content)
 
-        # 🔹 convert text → embedding
-        embedding = embedding_model.embed_query(text)
-
-        # 🔹 insert into DB
         cur.execute(
             """
             INSERT INTO stock_embeddings (ticker, content, embedding, source)
@@ -25,8 +28,8 @@ def store_documents(documents, ticker: str):
             """,
             (
                 ticker,
-                text,
-                embedding,   # list → stored as vector
+                doc.page_content,
+                embedding,
                 doc.metadata.get("source", "manual")
             )
         )

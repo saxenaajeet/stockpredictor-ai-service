@@ -6,8 +6,8 @@ class Settings(BaseSettings):
     app_version: str = "1.0.0"
     environment: str = "local"
     openai_api_key: str = "abcdef1234567890"
-    provider: str = "ollama"
-    embedding_provider: str = "nomic-embed-text"
+    embedding_provider: str = "ollama"
+    embedding_model: str = "nomic-embed-text"
 
     class Config:
         env_file = ".env"

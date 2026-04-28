@@ -2,8 +2,7 @@ from pydantic import BaseModel
 
 
 class DocumentTestRequest(BaseModel):
-    text: str
-    source: str = "manual"
+    source: str
 
 
 class DocumentTestResponse(BaseModel):
@@ -12,9 +11,8 @@ class DocumentTestResponse(BaseModel):
     chunks: list[str]
 
 class DocumentSearchRequest(BaseModel):
-    text: str
+    ticker: str
     question: str
-    source: str = "manual"
 
 
 class DocumentSearchResponse(BaseModel):
