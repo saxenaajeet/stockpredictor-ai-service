@@ -16,3 +16,13 @@ Health check:
 ```bash
 http://localhost:8000/health
 ```
+
+
+API Endpoint	    Purpose	                            Input	                    Output
+/llm/ask	        Basic LLM query	                    question	                Generic answer
+/documents/load	    Load data into DB	                ticker/source	            Data stored
+/documents/search	Retrieve chunks	                    ticker + question	        Matched chunks
+/rag/query	        Answer using RAG	                ticker + question	        Grounded answer
+/stock/research	    Structured stock report	            ticker	                    Formatted analysis
+/agent/query	    Intelligent multi-source answer	    ticker + question	        Final reasoning answer
+
